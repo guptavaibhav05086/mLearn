@@ -11,6 +11,8 @@ import { RegisterComponent } from "./auth/register/register.component";
 import { JavascriptComponent } from "./courseComponets/javascript/javascript.component";
 import { DotnetComponent } from "./courseComponets/dotnet/dotnet.component";
 import { JavaComponent } from "./courseComponets/java/java.component";
+import { AllcoursesComponent } from "./courseComponets/allcourses/allcourses.component";
+import { RegistercoursComponent } from "./otherComponents/registercours/registercours.component";
 const routes: Routes = [
   {
     path: "students",
@@ -65,6 +67,14 @@ const routes: Routes = [
       {
         path: "register",
         component: RegisterComponent
+      },
+      {
+        path: "explorecourses",
+        component: AllcoursesComponent
+      },
+      {
+        path: "registerCourse",
+        component: RegistercoursComponent
       }
     ]
   }

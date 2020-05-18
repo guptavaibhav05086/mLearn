@@ -17,8 +17,10 @@ import { RegisterComponent } from './auth/register/register.component';
 import { JavascriptComponent } from './courseComponets/javascript/javascript.component';
 import { DotnetComponent } from './courseComponets/dotnet/dotnet.component';
 import { JavaComponent } from './courseComponets/java/java.component';
+import { AllcoursesComponent } from './courseComponets/allcourses/allcourses.component';
+import { RegistercoursComponent } from './otherComponents/registercours/registercours.component';
 @NgModule({
-  declarations: [AppComponent, HomeComponent, HomecontentComponent, AboutComponent, ReactComponent, AngularComponent, FAQComponent, NodeComponent, LoginComponent, RegisterComponent,NavbarComponent, JavascriptComponent, DotnetComponent, JavaComponent],
+  declarations: [AppComponent, HomeComponent, HomecontentComponent, AboutComponent, ReactComponent, AngularComponent, FAQComponent, NodeComponent, LoginComponent, RegisterComponent,NavbarComponent, JavascriptComponent, DotnetComponent, JavaComponent, AllcoursesComponent, RegistercoursComponent],
   imports: [BrowserModule, AppRoutingModule, PublicModule],
   providers: [],
   bootstrap: [AppComponent]
