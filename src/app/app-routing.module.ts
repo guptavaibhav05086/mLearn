@@ -1,11 +1,77 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-
-
-const routes: Routes = [];
+import { NgModule } from "@angular/core";
+import { Routes, RouterModule } from "@angular/router";
+import { HomecontentComponent } from "../app/public/homecontent/homecontent.component";
+import { HomeComponent } from "../app/public/home/home.component";
+import { AboutComponent } from "../app/otherComponents/about/about.component";
+import { ReactComponent } from "../app/courseComponets/react/react.component";
+import { AngularComponent } from "./courseComponets/angular/angular.component";
+import { NodeComponent } from "./courseComponets/node/node.component";
+import { LoginComponent } from "./auth/login/login.component";
+import { RegisterComponent } from "./auth/register/register.component";
+import { JavascriptComponent } from "./courseComponets/javascript/javascript.component";
+import { DotnetComponent } from "./courseComponets/dotnet/dotnet.component";
+import { JavaComponent } from "./courseComponets/java/java.component";
+const routes: Routes = [
+  {
+    path: "students",
+    loadChildren: () =>
+      import("./students/students.module").then(m => m.StudentsModule)
+  },
+  {
+    path: "trainers",
+    loadChildren: () =>
+      import("./trainers/trainers.module").then(m => m.TrainersModule)
+  },
+  {
+    path: "",
+    component: HomeComponent,
+    children: [
+      {
+        path: "",
+        component: HomecontentComponent
+      },
+      {
+        path: "about",
+        component: AboutComponent
+      },
+      {
+        path: "react",
+        component: ReactComponent
+      },
+      {
+        path: "angular",
+        component: AngularComponent
+      },
+      {
+        path: "javascript",
+        component: JavascriptComponent
+      },
+      {
+        path: "node",
+        component: NodeComponent
+      },
+      {
+        path: "dotnet",
+        component: DotnetComponent
+      },
+      {
+        path: "java",
+        component: JavaComponent
+      },
+      {
+        path: "login",
+        component: LoginComponent
+      },
+      {
+        path: "register",
+        component: RegisterComponent
+      }
+    ]
+  }
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
