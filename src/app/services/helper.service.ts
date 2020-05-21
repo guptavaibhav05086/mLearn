@@ -1,23 +1,63 @@
 import { Injectable } from "@angular/core";
 import { CourseList } from "../Models/course-list";
 import { TopicList } from "../Models/topic-list";
-
+import { Router, ActivatedRoute } from "@angular/router";
 @Injectable({
   providedIn: "root"
 })
 export class HelperService {
-  constructor() {}
+  constructor(private route: ActivatedRoute, private router: Router) {}
 
   getCourseList(): Array<CourseList> {
     let courseList: CourseList[] = [
-      { courseId: 1, courseName: "React", imageName: "React.png",courseFees:18500 },
-      { courseId: 2, courseName: "Angular 8", imageName: "Angular.png",courseFees:20000 },
-      { courseId: 3, courseName: "Node", imageName: "Node.png",courseFees:20000 },
-      { courseId: 4, courseName: "C#/.Net", imageName: "DotNet.png",courseFees:20000 },
-      { courseId: 5, courseName: "Java", imageName: "Java.jpg",courseFees:20000 },
-      { courseId: 6, courseName: "Java Script", imageName: "JS.jpg",courseFees:6000 },
-      { courseId: 7, courseName: "MEAN", imageName: "mean.jpg",courseFees:35000 },
-      { courseId: 8, courseName: "MERN", imageName: "mern.png",courseFees:35000 }
+      {
+        courseId: 1,
+        courseName: "React",
+        imageName: "React.png",
+        courseFees: 18500
+      },
+      {
+        courseId: 2,
+        courseName: "Angular 8",
+        imageName: "Angular.png",
+        courseFees: 20000
+      },
+      {
+        courseId: 3,
+        courseName: "Node",
+        imageName: "Node.png",
+        courseFees: 20000
+      },
+      {
+        courseId: 4,
+        courseName: "C#/.Net",
+        imageName: "DotNet.png",
+        courseFees: 20000
+      },
+      {
+        courseId: 5,
+        courseName: "Java",
+        imageName: "Java.jpg",
+        courseFees: 20000
+      },
+      {
+        courseId: 6,
+        courseName: "Java Script",
+        imageName: "JS.jpg",
+        courseFees: 6000
+      },
+      {
+        courseId: 7,
+        courseName: "MEAN",
+        imageName: "mean.jpg",
+        courseFees: 35000
+      },
+      {
+        courseId: 8,
+        courseName: "MERN",
+        imageName: "mern.png",
+        courseFees: 35000
+      }
     ];
 
     return courseList;
@@ -198,12 +238,22 @@ export class HelperService {
 
     return courseList;
   }
-  getDiscountPercentage():number{
+  getDiscountPercentage(): number {
     return 18;
-
   }
-  getGSTRate():number{
+  getGSTRate(): number {
     return 18;
-
+  }
+  navigateToRegister(courseId, topicId) {
+    this.router.navigate(["/registerCourse"], {
+      queryParams: { course: courseId, topic: topicId },
+      fragment: "mainmenu"
+    });
+  }
+  navigateToTop(path,fragmentName) {
+    this.router.navigate([path], {
+      
+      fragment: fragmentName
+    });
   }
 }
