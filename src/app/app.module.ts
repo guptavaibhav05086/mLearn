@@ -21,7 +21,9 @@ import { JavaComponent } from "./courseComponets/java/java.component";
 import { AllcoursesComponent } from "./courseComponets/allcourses/allcourses.component";
 import { RegistercoursComponent } from "./otherComponents/registercours/registercours.component";
 import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown';
-import { ReactiveFormsModule } from '@angular/forms'
+import { ReactiveFormsModule } from '@angular/forms';
+import { TrainersingupComponent } from './auth/trainersingup/trainersingup.component';
+import { StudentsingupComponent } from './auth/studentsingup/studentsingup.component'
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,7 +41,9 @@ import { ReactiveFormsModule } from '@angular/forms'
     DotnetComponent,
     JavaComponent,
     AllcoursesComponent,
-    RegistercoursComponent
+    RegistercoursComponent,
+    TrainersingupComponent,
+    StudentsingupComponent
   ],
   imports: [
     BrowserModule,

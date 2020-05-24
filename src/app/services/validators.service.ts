@@ -1,5 +1,10 @@
 import { Injectable } from "@angular/core";
-import { AbstractControl } from "@angular/forms";
+import {
+  AbstractControl,
+  ValidatorFn,
+  FormGroup,
+  ValidationErrors
+} from "@angular/forms";
 
 @Injectable({
   providedIn: "root"
@@ -24,4 +29,28 @@ export class ValidatorsService {
       return null;
     };
   }
+  patternValidationTrainer(pattern: RegExp) {
+    return (control: AbstractControl): { [key: string]: any } | null => {
+      debugger;
+      if (control.value != "" && control.value != null) {
+        const forbidden = pattern.test(control.value);
+        return forbidden
+          ? null
+          : { invalidPattern: { valid: false, value: control.value } };
+      }
+      return null;
+    };
+  }
+
+  confirmPasswordValidation: ValidatorFn = (
+    control: FormGroup
+  ): ValidationErrors | null => {
+    debugger;
+    const name = control.get("password");
+    const alterEgo = control.get("confirmPassword");
+
+    return name && alterEgo && name.value !== alterEgo.value
+      ? { confirmPasswordValidation: true }
+      : null;
+  };
 }
