@@ -20,12 +20,7 @@
             "tsConfig": "tsconfig.app.json",
             "aot": false,
             "assets": ["src/favicon.ico", "src/assets"],
-            "styles": [
-              "src/styles.css",
-              "node_modules/ngx-owl-carousel-o/lib/styles/prebuilt-themes/owl.carousel.min.css",
-              "node_modules/ngx-owl-carousel-o/lib/styles/prebuilt-themes/owl.theme.default.min.css",
-              "src/styles.sass"
-            ],
+            "styles": ["src/styles.css"],
             "scripts": []
           },
           "configurations": {
@@ -115,5 +110,8 @@
       }
     }
   },
-  "defaultProject": "mLearnApp"
+  "defaultProject": "mLearnApp",
+  "cli": {
+    "analytics": "8f57c3c1-6e6e-4da2-84b4-af10f9f72326"
+  }
 }

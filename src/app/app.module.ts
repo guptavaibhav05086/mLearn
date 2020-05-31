@@ -9,7 +9,7 @@ import { AppComponent } from "./app.component";
 import { PublicModule } from "../app/public/public.module";
 import { AboutComponent } from "./otherComponents/about/about.component";
 import { NavbarComponent } from "./public/navbar/navbar.component";
-
+import { NgxSpinnerModule } from "ngx-spinner";
 import { ReactComponent } from "./courseComponets/react/react.component";
 import { AngularComponent } from "./courseComponets/angular/angular.component";
 import { FAQComponent } from "./courseComponets/faq/faq.component";
@@ -63,7 +63,8 @@ import { CarouselholderComponent } from "../app/public/carouselholder/carouselho
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    CarouselModule
+    CarouselModule,
+    NgxSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
