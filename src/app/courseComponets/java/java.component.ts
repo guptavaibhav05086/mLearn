@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
+import { HelperService } from "src/app/services/helper.service";
 
 @Component({
-  selector: 'app-java',
-  templateUrl: './java.component.html',
-  styleUrls: ['./java.component.css']
+  selector: "app-java",
+  templateUrl: "./java.component.html",
+  styleUrls: ["./java.component.css"]
 })
 export class JavaComponent implements OnInit {
+  constructor(private _helper: HelperService) {}
 
-  constructor() { }
-
-  ngOnInit() {
+  ngOnInit() {}
+  register(courseId, topicId) {
+    this._helper.navigateToRegister(courseId, topicId);
   }
-
 }

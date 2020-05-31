@@ -3,6 +3,7 @@ import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { HomeComponent } from "../app/public/home/home.component";
 import { HomecontentComponent } from "../app/public/homecontent/homecontent.component";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { PublicModule } from "../app/public/public.module";
@@ -20,10 +21,15 @@ import { DotnetComponent } from "./courseComponets/dotnet/dotnet.component";
 import { JavaComponent } from "./courseComponets/java/java.component";
 import { AllcoursesComponent } from "./courseComponets/allcourses/allcourses.component";
 import { RegistercoursComponent } from "./otherComponents/registercours/registercours.component";
-import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown';
-import { ReactiveFormsModule } from '@angular/forms';
-import { TrainersingupComponent } from './auth/trainersingup/trainersingup.component';
-import { StudentsingupComponent } from './auth/studentsingup/studentsingup.component'
+import { AngularMultiSelectModule } from "angular2-multiselect-dropdown";
+import { ReactiveFormsModule } from "@angular/forms";
+import { TrainersingupComponent } from "./auth/trainersingup/trainersingup.component";
+import { StudentsingupComponent } from "./auth/studentsingup/studentsingup.component";
+import { ContactusComponent } from "../../src/app/public/contactus/contactus.component";
+import { CarouselModule } from "ngx-owl-carousel-o";
+import { MeanComponent } from "./courseComponets/mean/mean.component";
+import { MernComponent } from "./courseComponets/mern/mern.component";
+import { CarouselholderComponent } from "../app/public/carouselholder/carouselholder.component";
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,7 +49,11 @@ import { StudentsingupComponent } from './auth/studentsingup/studentsingup.compo
     AllcoursesComponent,
     RegistercoursComponent,
     TrainersingupComponent,
-    StudentsingupComponent
+    StudentsingupComponent,
+    ContactusComponent,
+    MeanComponent,
+    MernComponent,
+    CarouselholderComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +61,9 @@ import { StudentsingupComponent } from './auth/studentsingup/studentsingup.compo
     PublicModule,
     AngularMultiSelectModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    CarouselModule
   ],
   providers: [],
   bootstrap: [AppComponent]

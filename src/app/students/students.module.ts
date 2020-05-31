@@ -7,10 +7,11 @@ import { DashboadComponent } from './dashboad/dashboad.component';
 import { LeftnavComponent } from './leftnav/leftnav.component';
 import { TopnavComponent } from './topnav/topnav.component';
 import { CoursetakenComponent } from './coursetaken/coursetaken.component';
+import { StudentprofileComponent } from './studentprofile/studentprofile.component';
 
 
 @NgModule({
-  declarations: [StudentsComponent, DashboadComponent, LeftnavComponent, TopnavComponent, CoursetakenComponent],
+  declarations: [StudentsComponent, DashboadComponent, LeftnavComponent, TopnavComponent, CoursetakenComponent, StudentprofileComponent],
   imports: [
     CommonModule,
     StudentsRoutingModule

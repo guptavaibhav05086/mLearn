@@ -444,7 +444,12 @@ No more need to pay for entire course if you just want to learn few topics.
 <!--================ End Fact Area =================-->
 
 <!--================ Start Testimonial Area =================-->
-<div class="section_gap testimonial_area">
+<div class="col-lg-10 text-center" style="margin-top: 50px;margin-bottom: 30px;margin-left: 10%;">
+    <h2 style="text-align: center;">Our Recuiters</h2>
+    <app-carouselholder [slidesData]="slidesStore"></app-carouselholder>
+</div>
+
+<div class="section_gap testimonial_area" style="display: none;">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-10 text-center">
@@ -522,8 +527,8 @@ No more need to pay for entire course if you just want to learn few topics.
                         </div>
                     </div>
                 </div>
-
-                <div class="owl-thumbs d-flex justify-content-center" data-slider-id="1">
+                <app-carouselholder></app-carouselholder>
+                <!-- <div class="owl-thumbs d-flex justify-content-center" data-slider-id="1">
                     <div class="owl-thumb-item">
                         <div class="position-relative">
                             <img class="img-fluid" src="../../../assets/img/testimonial/t1.jpg" alt="">
@@ -548,7 +553,7 @@ No more need to pay for entire course if you just want to learn few topics.
                         </div>
                         <div class="overlay-grad"></div>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>

@@ -13,6 +13,9 @@ import { DotnetComponent } from "./courseComponets/dotnet/dotnet.component";
 import { JavaComponent } from "./courseComponets/java/java.component";
 import { AllcoursesComponent } from "./courseComponets/allcourses/allcourses.component";
 import { RegistercoursComponent } from "./otherComponents/registercours/registercours.component";
+import { ContactusComponent } from "../../src/app/public/contactus/contactus.component";
+import { MeanComponent } from "./courseComponets/mean/mean.component";
+import { MernComponent } from "./courseComponets/mern/mern.component";
 const routes: Routes = [
   {
     path: "students",
@@ -75,6 +78,18 @@ const routes: Routes = [
       {
         path: "registerCourse",
         component: RegistercoursComponent
+      },
+      {
+        path: "contact",
+        component: ContactusComponent
+      },
+      {
+        path: "mean",
+        component: MeanComponent
+      },
+      {
+        path: "mern",
+        component: MernComponent
       }
     ]
   }

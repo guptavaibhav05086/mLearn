@@ -112,7 +112,7 @@
   </div>
 
   <div>
-    {{ studentForm.controls["mobileNumber"].errors | json }}
+    <!-- {{ studentForm.controls["mobileNumber"].errors | json }}
     Check Invalid: {{ studentForm.controls["mobileNumber"].invalid }} Total
     Condition:
     {{
@@ -120,7 +120,7 @@
         studentForm.controls["mobileNumber"].touched) &&
         studentForm.controls["mobileNumber"].invalid &&
         !studentForm.controls["mobileNumber"].errors.invalidPattern.valid
-    }}
+    }} -->
   </div>
 
   <div class="form-group text-center mt-4">
@@ -136,8 +136,8 @@
   <div class="form-group m-b-0">
     <div class="col-sm-12 text-center">
       <p>
-        i Have an Accont?
-        <a href="#" class="text-primary m-l-5"><b>Sign Up</b></a>
+        I Have an Accont?
+        <a routerLink="/login" class="text-primary m-l-5"><b>Login</b></a>
       </p>
     </div>
   </div>

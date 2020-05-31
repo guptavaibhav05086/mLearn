@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HelperService } from 'src/app/services/helper.service';
 
 @Component({
   selector: 'app-node',
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NodeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _helper: HelperService) {}
 
-  ngOnInit() {
+  ngOnInit() {}
+  register(courseId, topicId) {
+    this._helper.navigateToRegister(courseId, topicId);
   }
 
 }

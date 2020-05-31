@@ -233,6 +233,62 @@ export class HelperService {
         topicName: " Any Custom Topic/Particular issue Support",
         topicId: 10,
         fees: 0
+      },
+      {
+        courseId: 5,
+        topicName: " Web Development Basics and Tools",
+        topicId: 1,
+        fees: 1500
+      },
+      {
+        courseId: 5,
+        topicName: " Programming basics ",
+        topicId: 2,
+        fees: 2500
+      },
+      {
+        courseId: 5,
+        topicName: "OOPs and Design Pattern ",
+        topicId: 3,
+        fees: 3000
+      },
+      {
+        courseId: 5,
+        topicName: " Introduction to RESTFul Web Services (API's) ",
+        topicId: 4,
+        fees: 2000
+      },
+      {
+        courseId: 5,
+        topicName: "Spring Boot Web API Advance ",
+        topicId: 5,
+        fees: 3000
+      },
+      {
+        courseId: 5,
+        topicName:
+          " Spring Boot Micro service Architecture API Security using OAuth2.0 JWT",
+        topicId: 6,
+        fees: 4000
+      },
+      {
+        courseId: 5,
+        topicName: " Database connections and concepts",
+        topicId: 7,
+        fees: 3000
+      },
+      {
+        courseId: 5,
+        topicName: "Application Unit Testing and Deployment on AWS",
+        topicId: 8,
+        fees: 2000
+      },
+
+      {
+        courseId: 5,
+        topicName: " Any Custom Topic/Particular issue Support",
+        topicId: 10,
+        fees: 0
       }
     ];
 
@@ -250,9 +306,8 @@ export class HelperService {
       fragment: "mainmenu"
     });
   }
-  navigateToTop(path,fragmentName) {
+  navigateToTop(path, fragmentName) {
     this.router.navigate([path], {
-      
       fragment: fragmentName
     });
   }
