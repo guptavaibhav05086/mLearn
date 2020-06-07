@@ -21,6 +21,7 @@ import { DotnetComponent } from "./courseComponets/dotnet/dotnet.component";
 import { JavaComponent } from "./courseComponets/java/java.component";
 import { AllcoursesComponent } from "./courseComponets/allcourses/allcourses.component";
 import { RegistercoursComponent } from "./otherComponents/registercours/registercours.component";
+import { HttpClientModule } from "@angular/common/http";
 import { AngularMultiSelectModule } from "angular2-multiselect-dropdown";
 import { ReactiveFormsModule } from "@angular/forms";
 import { TrainersingupComponent } from "./auth/trainersingup/trainersingup.component";
@@ -30,9 +31,15 @@ import { CarouselModule } from "ngx-owl-carousel-o";
 import { MeanComponent } from "./courseComponets/mean/mean.component";
 import { MernComponent } from "./courseComponets/mern/mern.component";
 import { CarouselholderComponent } from "../app/public/carouselholder/carouselholder.component";
+import { NavbaruserComponent } from "../app/public/navbaruser/navbaruser.component";
+
+import { NavbarcommonComponent } from "../app/public/navbarcommon/navbarcommon.component";
+import { LogoutComponent } from './auth/logout/logout.component';
+
 @NgModule({
   declarations: [
     AppComponent,
+    NavbarcommonComponent,
     HomeComponent,
     HomecontentComponent,
     AboutComponent,
@@ -53,12 +60,15 @@ import { CarouselholderComponent } from "../app/public/carouselholder/carouselho
     ContactusComponent,
     MeanComponent,
     MernComponent,
-    CarouselholderComponent
+    CarouselholderComponent,
+    NavbaruserComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     PublicModule,
+    HttpClientModule,
     AngularMultiSelectModule,
     FormsModule,
     ReactiveFormsModule,
@@ -67,6 +77,7 @@ import { CarouselholderComponent } from "../app/public/carouselholder/carouselho
     NgxSpinnerModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  exports: [NavbaruserComponent]
 })
 export class AppModule {}

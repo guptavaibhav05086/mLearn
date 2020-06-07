@@ -56,6 +56,18 @@
     >
       *Password is required.
     </span>
+    <span
+      class="errorMessage"
+      *ngIf="
+        (studentForm.controls['password'].dirty ||
+          studentForm.controls['password'].touched) &&
+        studentForm.controls['password'].invalid &&
+        studentForm.controls['password'].errors.invalidPattern
+      "
+    >
+      *Password must be of 6 to 15 characters and consist of 1 lower,upper case
+      1 digit and 1 special character .
+    </span>
   </div>
   <div class="form-group">
     <label for="username" class="label text-uppercase">Conform Password</label>
@@ -78,13 +90,14 @@
       *Confrim Password is required.
     </span>
     <span
+      class="errorMessage"
       *ngIf="
-        studentForm.errors?.confirmPasswordValidation &&
-        (studentForm.touched || studentForm.dirty)
+        (studentForm.controls['confirmPassword'].dirty ||
+          studentForm.controls['confirmPassword'].touched) &&
+        studentForm.errors?.invalidPattern?.confirmPasswordValidation
       "
-      class="cross-validation-error-message alert alert-danger"
     >
-      Confirm Password is not same.
+      *Password and Confrim Password doesnot match.
     </span>
   </div>
   <div class="form-group ">
@@ -113,8 +126,22 @@
       ></angular2-multiselect>
     </div>
   </div>
+  <div *ngIf="serverError">
+    <span class="errorMessage" *ngFor="let item of error">
+      {{ item }}
+    </span>
+  </div>
+  <div *ngIf="registered">
+    <span class="successMessage">
+      User Registered Successfully
+    </span>
+  </div>
   <div class="form-group text-center mt-4">
-    <button class="btn btn-info btn-lg btn-block text-uppercase " type="submit">
+    <button
+      class="btn btn-info btn-lg btn-block text-uppercase "
+      type="submit"
+      (click)="registerUser()"
+    >
       Sign Up
     </button>
   </div>
@@ -128,3 +155,10 @@
     </div>
   </div>
 </form>
+<ngx-spinner
+  bdColor="rgba(51, 51, 51, 0.8)"
+  size="default"
+  type="ball-spin-clockwise"
+>
+  <p style="color: white">Please Wait.</p>
+</ngx-spinner>

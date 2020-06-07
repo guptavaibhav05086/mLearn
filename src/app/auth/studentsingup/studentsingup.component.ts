@@ -2,7 +2,10 @@ import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { HelperService } from "src/app/services/helper.service";
 import { ValidatorsService } from "src/app/services/validators.service";
-
+import { LoginService } from "../../services/login.service";
+import { RegisterUser } from "../../Models/register-user";
+import { NgxSpinnerService } from "ngx-spinner";
+import { delay } from "rxjs/operators";
 @Component({
   selector: "app-studentsingup",
   templateUrl: "./studentsingup.component.html",
@@ -13,6 +16,9 @@ export class StudentsingupComponent implements OnInit {
   dropdownList = [];
   selectedItems = [];
   dropdownSettings = {};
+  serverError = false;
+  error: any;
+  registered = false;
   studentForm = new FormGroup(
     {
       email: new FormControl("", [
@@ -21,7 +27,12 @@ export class StudentsingupComponent implements OnInit {
           /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/
         )
       ]),
-      password: new FormControl("", [Validators.required]),
+      password: new FormControl("", [
+        Validators.required,
+        this._validator.patternValidation(
+          /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{6,15}$/
+        )
+      ]),
       confirmPassword: new FormControl("", [Validators.required]),
       mobileNumber: new FormControl("", [
         Validators.required,
@@ -35,7 +46,9 @@ export class StudentsingupComponent implements OnInit {
 
   constructor(
     private _helper: HelperService,
-    private _validator: ValidatorsService
+    private _validator: ValidatorsService,
+    private _login: LoginService,
+    private spinnerService: NgxSpinnerService
   ) {}
 
   ngOnInit() {
@@ -65,5 +78,37 @@ export class StudentsingupComponent implements OnInit {
   }
   onDeSelectAll(items: any) {
     console.log(items);
+  }
+  registerUser() {
+    this.spinnerService.show();
+    let newUser = new RegisterUser();
+    newUser.Email = this.studentForm.controls["email"].value;
+    newUser.Password = this.studentForm.controls["password"].value;
+    newUser.ConfirmPassword = this.studentForm.controls[
+      "confirmPassword"
+    ].value;
+    newUser.MobileNumber = this.studentForm.controls["mobileNumber"].value;
+    newUser.Role = "Student";
+    this._login.registerUser(newUser).subscribe(
+      data => {
+        this.spinnerService.hide();
+        this.registered = true;
+        this.serverError = false;
+        delay(20000);
+        this._helper.navigateToLogin();
+      },
+      err => {
+        this.spinnerService.hide();
+        console.log(err);
+        if (err.status == 500 && err.error.ModelState == null) {
+          alert(err.error.Message);
+        }
+        debugger;
+        this.serverError = true;
+        this.error = err.error.ModelState[""];
+
+        console.log(this.error);
+      }
+    );
   }
 }

@@ -306,9 +306,10 @@ export class HelperService {
       fragment: "mainmenu"
     });
   }
-  navigateToTop(path, fragmentName) {
-    this.router.navigate([path], {
-      fragment: fragmentName
-    });
+  navigateToLogin() {
+    this.router.navigate(["/login"]);
+  }
+  navigateToPath(path:string){
+    this.router.navigate([path]);
   }
 }

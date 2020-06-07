@@ -17,6 +17,18 @@ export class ValidatorsService {
       return control.value === password ? { confirmPassword: true } : null;
     };
   }
+  passwordLength: ValidatorFn = (
+    control: AbstractControl
+  ): { [key: string]: any } | null => {
+    debugger;
+    if (control.value != "" && control.value != null) {
+      return control.value.length > 6
+        ? null
+        : { invalidLength: { valid: false, value: control.value } };
+    }
+    return null;
+  };
+
   patternValidation(pattern: RegExp) {
     return (control: AbstractControl): { [key: string]: any } | null => {
       debugger;
@@ -49,8 +61,8 @@ export class ValidatorsService {
     const name = control.get("password");
     const alterEgo = control.get("confirmPassword");
 
-    return name && alterEgo && name.value !== alterEgo.value
-      ? { confirmPasswordValidation: true }
-      : null;
+    return name && alterEgo && name.value === alterEgo.value
+      ? { invalidPattern: { confirmPasswordValidation: false } }
+      : { invalidPattern: { confirmPasswordValidation: true } };
   };
 }

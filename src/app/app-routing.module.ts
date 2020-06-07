@@ -16,6 +16,7 @@ import { RegistercoursComponent } from "./otherComponents/registercours/register
 import { ContactusComponent } from "../../src/app/public/contactus/contactus.component";
 import { MeanComponent } from "./courseComponets/mean/mean.component";
 import { MernComponent } from "./courseComponets/mern/mern.component";
+import { LogoutComponent } from './auth/logout/logout.component';
 const routes: Routes = [
   {
     path: "students",
@@ -90,6 +91,10 @@ const routes: Routes = [
       {
         path: "mern",
         component: MernComponent
+      },
+      {
+        path:"logout",
+        component:LogoutComponent
       }
     ]
   }

@@ -6,16 +6,62 @@
      <div class="app-login">
         <div class="login-box login-sidebar">
             <div class="white-box ">
-                <form class="form-horizontal form-material" id="loginform" action="index.html">
+                <form class="form-horizontal form-material" id="loginform" 
+                [formGroup]="loginForm" >
                    
                     <div class="form-group mt-5">
                         <label for="username" class="label text-uppercase">Username</label>
-                        <input class="form-control" type="text" required="" placeholder="Username">
+                        <input class="form-control" type="text" formControlName="email"  required placeholder="Username">
+                        <span
+      class="errorMessage"
+      *ngIf="
+        (loginForm.controls['email'].dirty ||
+        loginForm.controls['email'].touched) &&
+        loginForm.controls['email'].invalid &&
+        loginForm.controls['email'].errors.required
+      "
+    >
+      *Email is required.
+    </span>
+    <span
+      class="errorMessage"
+      *ngIf="
+        (loginForm.controls['email'].dirty ||
+        loginForm.controls['email'].touched) &&
+        loginForm.controls['email'].invalid &&
+        loginForm.controls['email'].errors.invalidPattern
+      "
+    >
+      *Email is incorrect.
+    </span>
 
                     </div>
                     <div class="form-group">
                         <label for="username" class="label text-uppercase">Password</label>
-                        <input class="form-control" type="password" required="" placeholder="Password">
+                        <input class="form-control" type="password" required formControlName="password" placeholder="Password">
+                        <span
+      class="errorMessage"
+      *ngIf="
+        (loginForm.controls['password'].dirty ||
+        loginForm.controls['password'].touched) &&
+        loginForm.controls['password'].invalid &&
+        loginForm.controls['password'].errors.required
+      "
+    >
+      *Password is required.
+    </span>
+    <span
+      class="errorMessage"
+      *ngIf="
+        (loginForm.controls['password'].dirty ||
+        loginForm.controls['password'].touched) &&
+        loginForm.controls['password'].invalid &&
+        loginForm.controls['password'].errors.invalidPattern
+      "
+    >
+      *Password must be of 6 to 15 characters and consist of 1 lower,upper case
+      1 digit and 1 special character .
+    </span>
                     </div>
                     <div class="form-group">
                         <label class="checkbox checkbox-primary">
@@ -25,8 +71,11 @@
 
                         <a href="javascript:void(0)" id="forgot-password" class="text-info pull-right"><i class="fa fa-lock mr-2"></i> Forgot Password?</a> 
                     </div>
+                    <div *ngIf="displayLoginError" class="errorMessage">
+{{loginError}}
+                    </div>
                     <div class="form-group text-center mt-4">
-                        <button class="btn btn-info btn-lg btn-block text-uppercase " onclick="window.location.href = 'index.html'" type="submit">Log In</button>
+                        <button class="btn btn-info btn-lg btn-block text-uppercase " [disabled]="!loginForm.valid" type="submit" (click)="login()">Log In</button>
                     </div>
 
                           <div class="form-group m-b-0">

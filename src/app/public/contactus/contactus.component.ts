@@ -6,7 +6,7 @@ import {} from "googlemaps";
   styleUrls: ["./contactus.component.css"]
 })
 export class ContactusComponent implements OnInit {
-  @ViewChild("map", null)
+  @ViewChild("map", {read:true})
   mapElement: any;
   map: google.maps.Map;
   constructor() {}
