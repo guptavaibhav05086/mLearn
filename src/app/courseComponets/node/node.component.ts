@@ -9,7 +9,7 @@ import { HelperService } from 'src/app/services/helper.service';
 export class NodeComponent implements OnInit {
 
   constructor(private _helper: HelperService) {}
-
+courseId = 3;
   ngOnInit() {}
   register(courseId, topicId) {
     this._helper.navigateToRegister(courseId, topicId);

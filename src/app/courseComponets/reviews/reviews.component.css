@@ -1,0 +1,5 @@
+.right-contents .reviews span,
+.right-contents .reviews .star {
+  width: 20% !important;
+  margin-bottom: 10px;
+}

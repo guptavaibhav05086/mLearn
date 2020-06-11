@@ -7,7 +7,10 @@ export const environment = {
   api_RegisterUser: "/api/Account/Register",
   baseUrl: "http://localhost:39117",
   userDetails: "/api/Students/GetUserProfile",
-  tokenUrl: "/Token"
+  tokenUrl: "/Token",
+  guestRegister: "/api/Public/guestregister",
+  registerFeedback: "/api/Public/userfeedback",
+  getFeedback: "/api/Public/getuserfeedback?courseId=$courseId"
 };
 
 /*

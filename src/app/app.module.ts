@@ -34,8 +34,9 @@ import { CarouselholderComponent } from "../app/public/carouselholder/carouselho
 import { NavbaruserComponent } from "../app/public/navbaruser/navbaruser.component";
 
 import { NavbarcommonComponent } from "../app/public/navbarcommon/navbarcommon.component";
-import { LogoutComponent } from './auth/logout/logout.component';
-
+import { LogoutComponent } from "./auth/logout/logout.component";
+import { ReviewsComponent } from "./courseComponets/reviews/reviews.component";
+import { NgxStarRatingModule } from "ngx-star-rating";
 @NgModule({
   declarations: [
     AppComponent,
@@ -62,7 +63,8 @@ import { LogoutComponent } from './auth/logout/logout.component';
     MernComponent,
     CarouselholderComponent,
     NavbaruserComponent,
-    LogoutComponent
+    LogoutComponent,
+    ReviewsComponent
   ],
   imports: [
     BrowserModule,
@@ -74,7 +76,8 @@ import { LogoutComponent } from './auth/logout/logout.component';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     CarouselModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    NgxStarRatingModule
   ],
   providers: [],
   bootstrap: [AppComponent],

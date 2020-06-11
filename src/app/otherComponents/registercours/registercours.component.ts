@@ -5,10 +5,12 @@ import { HelperService } from "../../services/helper.service";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { ValidatorsService } from "src/app/services/validators.service";
 import { LoginService } from "../../services/login.service";
+import { RegisterService } from "../../services/register.service";
 import { RegisterUser } from "../../Models/register-user";
 import { NgxSpinnerService } from "ngx-spinner";
 import { delay } from "rxjs/operators";
 import { TokenRequest } from "src/app/Models/token-request";
+import { GusetRegister } from "src/app/Models/guset-register";
 @Component({
   selector: "app-registercours",
   templateUrl: "./registercours.component.html",
@@ -34,7 +36,8 @@ export class RegistercoursComponent implements OnInit {
     private route: ActivatedRoute,
     private _validator: ValidatorsService,
     private _login: LoginService,
-    private spinnerService: NgxSpinnerService
+    private spinnerService: NgxSpinnerService,
+    private _register: RegisterService
   ) {}
 
   ngOnInit() {
@@ -67,20 +70,20 @@ export class RegistercoursComponent implements OnInit {
     e.preventDefault();
     this.displayGuestForm = true;
   }
-  login() {
-    let loginRequest = new TokenRequest();
-    loginRequest.username = this.loginForm.controls["email"].value;
-    loginRequest.password = this.loginForm.controls["password"].value;
-    this._login.getToken(loginRequest).subscribe(
+  registerGuest() {
+    this.spinnerService.show();
+    let loginRequest = new GusetRegister();
+    loginRequest.Email = this.loginForm.controls["email"].value;
+    loginRequest.PhoneNumber = this.loginForm.controls["mobileNumber"].value;
+    this._register.guestRegister(loginRequest).subscribe(
       data => {
+        this.spinnerService.hide();
         console.log(data);
-        this._login.setToken(data);
-        if (data.role == "Student") {
-          this._helper.navigateToPath("/students/dashboard");
-        } else if (data.role == "Trainer") {
-        }
       },
-      err => {}
+      err => {
+        this.spinnerService.hide();
+        console.log(err);
+      }
     );
   }
   getCourseTopicDetails(courseId, topicid) {
