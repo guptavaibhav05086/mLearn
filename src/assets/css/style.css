@@ -863,7 +863,9 @@ button:focus {
   border: 0;
   background: transparent; }
   .right-contents .comments-area .star {
-    margin-left: 20px; }
+    /* margin-left: 20px; */
+    font-size:20px !important;
+   }
 
 /* End  Courses Details Area css
 ============================================================================================ */

@@ -7,6 +7,8 @@ import { RegisterUser } from "../../Models/register-user";
 import { NgxSpinnerService } from "ngx-spinner";
 import { delay } from "rxjs/operators";
 import { TokenRequest } from "src/app/Models/token-request";
+import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
+import { ForgetpasswordComponent } from "../forgetpassword/forgetpassword.component";
 @Component({
   selector: "app-login",
   templateUrl: "./login.component.html",
@@ -18,12 +20,13 @@ import { TokenRequest } from "src/app/Models/token-request";
 })
 export class LoginComponent implements OnInit {
   displayLoginError = false;
-  loginError="";
+  loginError = "";
   constructor(
     private _helper: HelperService,
     private _validator: ValidatorsService,
     private _login: LoginService,
-    private spinnerService: NgxSpinnerService
+    private spinnerService: NgxSpinnerService,
+    private modalService: NgbModal
   ) {}
   loginForm = new FormGroup({
     email: new FormControl("", [
@@ -45,9 +48,10 @@ export class LoginComponent implements OnInit {
     let loginRequest = new TokenRequest();
     loginRequest.username = this.loginForm.controls["email"].value;
     loginRequest.password = this.loginForm.controls["password"].value;
+    this.spinnerService.show();
     this._login.getToken(loginRequest).subscribe(
       data => {
-        console.log(data);
+        this.spinnerService.hide();
         this._login.setToken(data);
         if (data.role == "Student") {
           this._helper.navigateToPath("/students/dashboard");
@@ -55,10 +59,15 @@ export class LoginComponent implements OnInit {
         }
       },
       err => {
-        this.displayLoginError=true;
+        this.spinnerService.hide();
+        this.displayLoginError = true;
         this.loginError = err.error.error_description;
         console.log(err.error.error_description);
       }
     );
+  }
+  openForgetPassword() {
+    const modalRef = this.modalService.open(ForgetpasswordComponent);
+    modalRef.componentInstance.name = "World";
   }
 }

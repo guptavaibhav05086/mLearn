@@ -3,6 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { LoginService } from "../services/login.service";
 import { GusetRegister } from "../../app/Models/guset-register";
 import { environment } from "src/environments/environment";
+import { ResetPassword } from "../Models/reset-password";
 @Injectable({
   providedIn: "root"
 })
@@ -29,5 +30,20 @@ export class RegisterService {
       courseId
     );
     return this._httpclient.get(url, this.login.getAuthHeader());
+  }
+
+  forgotPasswordEmail(email) {
+    let url = `${environment.baseUrl}${environment.forgotPassword}`.replace(
+      "$email",
+      email
+    );
+    return this._httpclient.get(url, this.login.getAuthHeader());
+  }
+  resetPasswordRequest(resetPassword: ResetPassword) {
+    return this._httpclient.post(
+      `${environment.baseUrl}${environment.resetPassword}`,
+      resetPassword,
+      this.login.getAuthHeader()
+    );
   }
 }

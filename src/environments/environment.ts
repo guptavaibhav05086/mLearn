@@ -5,12 +5,14 @@
 export const environment = {
   production: false,
   api_RegisterUser: "/api/Account/Register",
-  baseUrl: "http://localhost:39117",
+  baseUrl: "http://aucsalejobs-001-site1.btempurl.com",
   userDetails: "/api/Students/GetUserProfile",
   tokenUrl: "/Token",
   guestRegister: "/api/Public/guestregister",
   registerFeedback: "/api/Public/userfeedback",
-  getFeedback: "/api/Public/getuserfeedback?courseId=$courseId"
+  getFeedback: "/api/Public/getuserfeedback?courseId=$courseId",
+  forgotPassword: "/api/Public/resetPassword?email=$email",
+  resetPassword: "/api/Account/ResetPassword"
 };
 
 /*

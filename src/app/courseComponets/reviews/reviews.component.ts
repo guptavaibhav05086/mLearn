@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { RegisterService } from "../../services/register.service";
 import { Feedback } from "src/app/Models/feedback";
-
+import { map } from "rxjs/operators";
 @Component({
   selector: "app-reviews",
   templateUrl: "./reviews.component.html",
@@ -12,7 +12,8 @@ export class ReviewsComponent implements OnInit {
   rating3: number = 0;
   userId = 1;
   feedback: Feedback;
-  userFeedbacks: [];
+  userFeedbacks: any;
+  flags: Array<boolean>;
 
   constructor(private register: RegisterService) {}
   flag = false;
@@ -20,6 +21,8 @@ export class ReviewsComponent implements OnInit {
   ngOnInit(): void {
     this.feedback = new Feedback();
     this.getFeedback();
+    this.flags = new Array<boolean>();
+    //this.userFeedbacks = new Array<Feedback>();
   }
 
   submitFeedback() {
@@ -30,7 +33,9 @@ export class ReviewsComponent implements OnInit {
     this.register.registerFeedback(this.feedback).subscribe(
       data => {
         this.flag = true;
-        this.message = "Feedback submitted";
+        //this.message = "Feedback submitted";
+        this.userFeedbacks = data;
+        this.feedback.feedback = "";
       },
       err => {
         this.message = "Issue in Feedback submission";
@@ -42,8 +47,19 @@ export class ReviewsComponent implements OnInit {
       data => {
         debugger;
         console.log(data);
+        this.userFeedbacks = data;
+        this.userFeedbacks.map((item, index) => {
+          item.flag = false;
+          this.flags[index] = false;
+        });
+        console.log(this.userFeedbacks);
       },
       err => {}
     );
+  }
+  expandComment(e, i) {
+    debugger;
+    e.preventDefault();
+    this.flags[i] = this.flags[i] ? false : true;
   }
 }

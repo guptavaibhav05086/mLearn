@@ -7,7 +7,7 @@ import { HelperService } from "../../services/helper.service";
 })
 export class ReactComponent implements OnInit {
   constructor(private _helper: HelperService) {}
-
+  courseId=1;
   ngOnInit() {}
   register(courseId, topicId) {
     this._helper.navigateToRegister(courseId, topicId);

@@ -69,7 +69,7 @@
                             <span class="check-mark"></span>  Remember me
                         </label>
 
-                        <a href="javascript:void(0)" id="forgot-password" class="text-info pull-right"><i class="fa fa-lock mr-2"></i> Forgot Password?</a> 
+                        <a href="javascript:void(0)" (click)="openForgetPassword()" id="forgot-password" class="text-info pull-right"><i class="fa fa-lock mr-2"></i> Forgot Password?</a> 
                     </div>
                     <div *ngIf="displayLoginError" class="errorMessage">
 {{loginError}}

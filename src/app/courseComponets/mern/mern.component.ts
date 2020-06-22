@@ -7,7 +7,7 @@ import { HelperService } from "src/app/services/helper.service";
 })
 export class MernComponent implements OnInit {
   constructor(private _helper: HelperService) {}
-
+  courseId = 8;
   ngOnInit() {}
   register(courseId, topicId) {
     this._helper.navigateToRegister(courseId, topicId);

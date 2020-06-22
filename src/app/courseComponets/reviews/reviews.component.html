@@ -32,101 +32,88 @@
     <span *ngIf="flag">{{ message }}</span>
   </div>
 </div>
+<div class="" style="display: none;">
+  <div
+    class="userComments"
+    *ngFor="let item of userFeedbacks | slice: 0:3; let i = index"
+  >
+    <div class="userImg">
+      <div>
+        <img
+          src="../../../assets/img/blog/c1.jpg"
+          alt="../../../assets/img/blog/c1.jpg"
+        />
+      </div>
+      <div>
+        <h5>
+          <a href="#" *ngIf="item.userName">{{ item.userName }}</a>
+          <a href="#" *ngIf="!item.userName">Anonymous User</a>
+        </h5>
+      </div>
+      <div></div>
+    </div>
+    <div class="usrRating">
+      <ngx-star-rating [(ngModel)]="item.starRating" [id]="i"></ngx-star-rating>
+    </div>
+    <div class="usrcomments">
+      {{ item.feedback | slice: 0:20 }}
+    </div>
+  </div>
+</div>
+
 <div class="comments-area mb-30">
-    <div class="comment-list">
-        <div class="single-comment single-reviews justify-content-between d-flex">
-          <div class="user justify-content-between d-flex">
-            <div class="thumb">
-              <img src="../../../assets/img/blog/c1.jpg" alt="" />
-            </div>
-            <div class="desc">
-              <h5>
-                <a href="#">Emilly Blunt</a>
-                <div class="star">
-                  <span class="fa fa-star checked"></span>
-                  <span class="fa fa-star checked"></span>
-                  <span class="fa fa-star checked"></span>
-                  <span class="fa fa-star"></span>
-                  <span class="fa fa-star"></span>
-                </div>
-              </h5>
-              <p class="comment">
-               No Comments to display
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-  <div class="comment-list">
+  <div
+    class="comment-list"
+    *ngFor="let item of userFeedbacks | slice: 0:3; let i = index"
+  >
     <div class="single-comment single-reviews justify-content-between d-flex">
       <div class="user justify-content-between d-flex">
         <div class="thumb">
-          <img src="../../../assets/img/blog/c1.jpg" alt="" />
+          <img
+            src="../../../assets/StudentDashboard/img/logo-small.png"
+            alt="../../../assets/img/blog/c1.jpg"
+            height="50px"
+          />
         </div>
         <div class="desc">
           <h5>
-            <a href="#">Emilly Blunt</a>
+            <a href="#" *ngIf="item.userName">{{ item.userName }}</a>
+            <a href="#" *ngIf="!item.userName">Anonymous User</a>
             <div class="star">
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star"></span>
-              <span class="fa fa-star"></span>
+              <span
+                class="fa fa-star checked"
+                *ngIf="item.starRating >= 1"
+              ></span>
+              <span class="fa fa-star " *ngIf="item.starRating < 1"></span>
+              <span
+                class="fa fa-star checked"
+                *ngIf="item.starRating >= 2"
+              ></span>
+              <span class="fa fa-star " *ngIf="item.starRating < 2"></span>
+              <span
+                class="fa fa-star checked"
+                *ngIf="item.starRating >= 3"
+              ></span>
+              <span class="fa fa-star " *ngIf="item.starRating < 3"></span>
+              <span
+                class="fa fa-star checked"
+                *ngIf="item.starRating >= 4"
+              ></span>
+              <span class="fa fa-star " *ngIf="item.starRating < 4"></span>
+              <span
+                class="fa fa-star checked"
+                *ngIf="item.starRating >= 5"
+              ></span>
+              <span class="fa fa-star " *ngIf="item.starRating < 5"></span>
             </div>
           </h5>
-          <p class="comment">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore.
+          <p class="comment" *ngIf="!flags[i]">
+            {{ item.feedback | slice: 0:125 }}
+            <a href="#" (click)="expandComment($event, i)">read more.......</a>
           </p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="comment-list">
-    <div class="single-comment single-reviews justify-content-between d-flex">
-      <div class="user justify-content-between d-flex">
-        <div class="thumb">
-          <img src="../../../assets/img/blog/c2.jpg" alt="" />
-        </div>
-        <div class="desc">
-          <h5>
-            <a href="#">Elsie Cunningham</a>
-            <div class="star">
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star"></span>
-              <span class="fa fa-star"></span>
-            </div>
-          </h5>
-          <p class="comment">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore.
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="comment-list">
-    <div class="single-comment single-reviews justify-content-between d-flex">
-      <div class="user justify-content-between d-flex">
-        <div class="thumb">
-          <img src="../../../assets/img/blog/c3.jpg" alt="" />
-        </div>
-        <div class="desc">
-          <h5>
-            <a href="#">Maria Luna</a>
-            <div class="star">
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star"></span>
-              <span class="fa fa-star"></span>
-            </div>
-          </h5>
-          <p class="comment">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore.
+          <p class="comment" *ngIf="flags[i]">
+            {{ item.feedback }}
+            <a (click)="expandComment($event, i)">read less.......</a>
           </p>
         </div>
       </div>

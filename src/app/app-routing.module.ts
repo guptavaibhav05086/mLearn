@@ -16,7 +16,8 @@ import { RegistercoursComponent } from "./otherComponents/registercours/register
 import { ContactusComponent } from "../../src/app/public/contactus/contactus.component";
 import { MeanComponent } from "./courseComponets/mean/mean.component";
 import { MernComponent } from "./courseComponets/mern/mern.component";
-import { LogoutComponent } from './auth/logout/logout.component';
+import { LogoutComponent } from "./auth/logout/logout.component";
+import { ResetpasswordComponent } from "./auth/resetpassword/resetpassword.component";
 const routes: Routes = [
   {
     path: "students",
@@ -93,8 +94,12 @@ const routes: Routes = [
         component: MernComponent
       },
       {
-        path:"logout",
-        component:LogoutComponent
+        path: "logout",
+        component: LogoutComponent
+      },
+      {
+        path: "resetpassword",
+        component: ResetpasswordComponent
       }
     ]
   }

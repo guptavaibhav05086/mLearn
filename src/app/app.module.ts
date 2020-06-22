@@ -37,6 +37,9 @@ import { NavbarcommonComponent } from "../app/public/navbarcommon/navbarcommon.c
 import { LogoutComponent } from "./auth/logout/logout.component";
 import { ReviewsComponent } from "./courseComponets/reviews/reviews.component";
 import { NgxStarRatingModule } from "ngx-star-rating";
+import { ForgetpasswordComponent } from "./auth/forgetpassword/forgetpassword.component";
+import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
+import { ResetpasswordComponent } from './auth/resetpassword/resetpassword.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -64,7 +67,9 @@ import { NgxStarRatingModule } from "ngx-star-rating";
     CarouselholderComponent,
     NavbaruserComponent,
     LogoutComponent,
-    ReviewsComponent
+    ReviewsComponent,
+    ForgetpasswordComponent,
+    ResetpasswordComponent
   ],
   imports: [
     BrowserModule,
@@ -77,10 +82,12 @@ import { NgxStarRatingModule } from "ngx-star-rating";
     BrowserAnimationsModule,
     CarouselModule,
     NgxSpinnerModule,
-    NgxStarRatingModule
+    NgxStarRatingModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent],
-  exports: [NavbaruserComponent]
+  exports: [NavbaruserComponent],
+  entryComponents: [ForgetpasswordComponent]
 })
 export class AppModule {}

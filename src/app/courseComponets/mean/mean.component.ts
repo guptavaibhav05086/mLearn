@@ -8,7 +8,7 @@ import { HelperService } from "src/app/services/helper.service";
 })
 export class MeanComponent implements OnInit {
   constructor(private _helper: HelperService) {}
-
+  courseId=7;
   ngOnInit() {}
   register(courseId, topicId) {
     this._helper.navigateToRegister(courseId, topicId);
