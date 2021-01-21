@@ -5,14 +5,20 @@
 export const environment = {
   production: false,
   api_RegisterUser: "/api/Account/Register",
-  baseUrl: "http://aucsalejobs-001-site1.btempurl.com",
+  ///baseUrl: "http://guptavaibhav-001-site5.ctempurl.com",
+  baseUrl: "http://localhost:39117",
+  //
   userDetails: "/api/Students/GetUserProfile",
   tokenUrl: "/Token",
   guestRegister: "/api/Public/guestregister",
   registerFeedback: "/api/Public/userfeedback",
   getFeedback: "/api/Public/getuserfeedback?courseId=$courseId",
   forgotPassword: "/api/Public/resetPassword?email=$email",
-  resetPassword: "/api/Account/ResetPassword"
+  resetPassword: "/api/Account/ResetPassword",
+  generateOrder: "/api/Public/generateorder",
+  createBoooking: "/api/Public/CreateBooking",
+  transactionValidate:
+    "/api/Public/validateTransaction?paymentId=$paymentId&orderId=$orderId&signature=$signature"
 };
 
 /*

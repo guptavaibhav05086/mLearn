@@ -18,6 +18,7 @@ import { MeanComponent } from "./courseComponets/mean/mean.component";
 import { MernComponent } from "./courseComponets/mern/mern.component";
 import { LogoutComponent } from "./auth/logout/logout.component";
 import { ResetpasswordComponent } from "./auth/resetpassword/resetpassword.component";
+import { PaymentstatusComponent } from "./otherComponents/paymentstatus/paymentstatus.component";
 const routes: Routes = [
   {
     path: "students",
@@ -100,6 +101,10 @@ const routes: Routes = [
       {
         path: "resetpassword",
         component: ResetpasswordComponent
+      },
+      {
+        path: "paymentmessage",
+        component: PaymentstatusComponent
       }
     ]
   }

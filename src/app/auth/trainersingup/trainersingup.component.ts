@@ -63,6 +63,7 @@ export class TrainersingupComponent implements OnInit {
     private spinnerService: NgxSpinnerService
   ) {}
   registerUser() {
+    debugger;
     this.spinnerService.show();
     let newUser = new RegisterUser();
     newUser.Email = this.studentForm.controls["email"].value;

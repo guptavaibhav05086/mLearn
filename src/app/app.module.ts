@@ -39,7 +39,12 @@ import { ReviewsComponent } from "./courseComponets/reviews/reviews.component";
 import { NgxStarRatingModule } from "ngx-star-rating";
 import { ForgetpasswordComponent } from "./auth/forgetpassword/forgetpassword.component";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
-import { ResetpasswordComponent } from './auth/resetpassword/resetpassword.component';
+import { ResetpasswordComponent } from "./auth/resetpassword/resetpassword.component";
+import { PaymentsComponent } from "./otherComponents/payments/payments.component";
+import { SinglecourseComponent } from "./courseComponets/singlecourse/singlecourse.component";
+import { RazorpaymentsComponent } from "./otherComponents/razorpayments/razorpayments.component";
+import { ToastrModule } from "ngx-toastr";
+import { PaymentstatusComponent } from "./otherComponents/paymentstatus/paymentstatus.component";
 @NgModule({
   declarations: [
     AppComponent,
@@ -69,7 +74,11 @@ import { ResetpasswordComponent } from './auth/resetpassword/resetpassword.compo
     LogoutComponent,
     ReviewsComponent,
     ForgetpasswordComponent,
-    ResetpasswordComponent
+    ResetpasswordComponent,
+    PaymentsComponent,
+    SinglecourseComponent,
+    RazorpaymentsComponent,
+    PaymentstatusComponent
   ],
   imports: [
     BrowserModule,
@@ -83,7 +92,8 @@ import { ResetpasswordComponent } from './auth/resetpassword/resetpassword.compo
     CarouselModule,
     NgxSpinnerModule,
     NgxStarRatingModule,
-    NgbModule
+    NgbModule,
+    ToastrModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent],

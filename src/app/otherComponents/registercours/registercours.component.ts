@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewChild } from "@angular/core";
 import { Router, ActivatedRoute, ParamMap } from "@angular/router";
 import { Observable } from "rxjs";
 import { HelperService } from "../../services/helper.service";
@@ -11,12 +11,20 @@ import { NgxSpinnerService } from "ngx-spinner";
 import { delay } from "rxjs/operators";
 import { TokenRequest } from "src/app/Models/token-request";
 import { GusetRegister } from "src/app/Models/guset-register";
+import { BookCourse } from "src/app/Models/book-course";
+import { BoookingService } from "src/app/services/boooking.service";
+import { RazorpaymentsComponent } from "../razorpayments/razorpayments.component";
+import { ToastrService } from "ngx-toastr";
 @Component({
   selector: "app-registercours",
   templateUrl: "./registercours.component.html",
   styleUrls: ["./registercours.component.css"]
 })
 export class RegistercoursComponent implements OnInit {
+  @ViewChild(RazorpaymentsComponent, null)
+  private payComponent: RazorpaymentsComponent;
+  courseBooking: BookCourse;
+  orderPaymentData: any;
   selectedCourse: string;
   selectedTopic: string = "";
   displayGuestForm: boolean = false;
@@ -37,7 +45,9 @@ export class RegistercoursComponent implements OnInit {
     private _validator: ValidatorsService,
     private _login: LoginService,
     private spinnerService: NgxSpinnerService,
-    private _register: RegisterService
+    private _register: RegisterService,
+    private _booking: BoookingService,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit() {
@@ -78,7 +88,10 @@ export class RegistercoursComponent implements OnInit {
     this._register.guestRegister(loginRequest).subscribe(
       data => {
         this.spinnerService.hide();
+        this.courseBooking.isGuestRegistartion = true;
+        this.courseBooking.email = loginRequest.Email;
         console.log(data);
+        this.toastr.success("Registration Successful!", "Registration Done!");
       },
       err => {
         this.spinnerService.hide();
@@ -105,6 +118,7 @@ export class RegistercoursComponent implements OnInit {
       this.selectedCourse = courseName[0].courseName;
       this.imageUrl = this.imageUrl + courseName[0].imageName;
     }
+    this.InitiateRegistration(courseId, topicid);
   }
 
   calculateFees(basicFees: number) {
@@ -116,5 +130,55 @@ export class RegistercoursComponent implements OnInit {
     this.feesDetails.totalFees = basicFees - this.feesDetails.discount;
     this.feesDetails.netTotal =
       this.feesDetails.totalFees + this.feesDetails.GST;
+  }
+  InitiateRegistration(courseid, topicId) {
+    this.courseBooking = new BookCourse();
+    this.courseBooking.courseFees = this.feesDetails.fees;
+    this.courseBooking.discount = this.feesDetails.discount;
+    this.courseBooking.gst = this.feesDetails.GST;
+    this.courseBooking.totalCourseFees = this.feesDetails.totalFees;
+    this.courseBooking.totalPaidAmount = this.feesDetails.netTotal;
+    this.courseBooking.mLearnTopic = topicId;
+    this.courseBooking.courseId = courseid;
+    this.courseBooking.courseName = this.selectedCourse;
+    if (topicId == 0) {
+      this.courseBooking.ismLearn = false;
+    } else {
+      this.courseBooking.ismLearn = true;
+    }
+    this._booking.generateOrderId(this.courseBooking).subscribe(
+      data => {
+        this.orderPaymentData = data;
+      },
+      err => {}
+    );
+  }
+
+  BookCourse(e) {
+    e.preventDefault();
+    this.courseBooking.transactionId = this.orderPaymentData[0];
+    this._booking.CreateBooking(this.courseBooking).subscribe(data => {
+      this.payComponent.orderId = this.orderPaymentData[1];
+      this.payComponent.createRzpayOrder(this.courseBooking.totalPaidAmount);
+    });
+  }
+  transactionUpdate(event) {
+    debugger;
+    console.log(event);
+    let result = "";
+    if (event.status == "Successful") {
+      result = `Your booking status is  ${event.status}.Email with all boooking details is Sent t your Mail Id.`;
+      this.toastr.success(result);
+      let timer = setInterval(() => {
+        this._helper.navigateToPath("/paymentmessage");
+      }, 10000);
+    } else {
+      result = `Your booking status is  ${event.status}.In case amount is deducted will be refunded to you in 3-5 business days`;
+      this.toastr.error(result);
+    }
+    // this.toastr.success(result, "Payment Done!");
+
+    //alert(result);
+    //this._pubData.navigateToPath("/");
   }
 }
