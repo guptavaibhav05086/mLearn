@@ -19,7 +19,7 @@ export class CarouselholderComponent implements OnInit {
     navSpeed: 50,
     margin: 10,
     autoplay: true,
-    autoplaySpeed: 20,
+    autoplaySpeed: 2,
     autoplayHoverPause: true,
     responsive: {
       0: {

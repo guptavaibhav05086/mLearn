@@ -8,3 +8,91 @@
 .hidePrice {
   display: none;
 }
+.feature_area {
+  margin-top: -45em;
+}
+h4,
+.h4 {
+  margin-top: 0px !important;
+}
+.hwworks {
+  margin-top: 250px;
+}
+.single_course {
+  margin-bottom: 42px;
+  padding: 10px;
+  border: 1px solid lightgray;
+  background: white;
+  border-radius: 15px;
+}
+.dot {
+  background: url(../../../assets/img/tick.png);
+  display: inline-block;
+  width: 100%;
+  font-family: Maven pro;
+  font-size: 16px;
+  font-weight: 300;
+  background-repeat: no-repeat;
+  background-size: 20px;
+  padding: 0 0 0 30px;
+  background-position: 0 5px;
+}
+.txtMargin {
+  padding-top: 40px;
+}
+.termsStyle {
+  font-size: 8px;
+  font-weight: 300;
+}
+.f_icon {
+  text-align: center;
+}
+.textStyle {
+  font-family: Maven Pro, sans-serif;
+  font-size: 15px;
+  font-weight: 300;
+}
+.txtFreelance {
+  font-weight: bolder;
+  font-size: 24px;
+  font-family: Maven Pro, sans-serif;
+}
+.btnViewCourse {
+  background-color: white;
+  /* color: green; */
+  border: 1px solid lightblue !important;
+}
+.viewbtn {
+  text-align: center;
+}
+.fact_area.overlay:after {
+  background: none !important;
+  opacity: 0;
+}
+.fact_area {
+  position: relative;
+  color: #000;
+  background-image: none !important;
+  background-size: cover;
+  z-index: 1;
+  padding: 120px 0 90px;
+}
+.fact_area .main_title h2 {
+  color: #000;
+}
+.card .avatar {
+  width: 30px;
+  height: 30px;
+  overflow: hidden;
+  border-radius: 50%;
+  margin-bottom: 15px;
+}
+.single_course .course_head.overlay:after {
+  background: white;
+  opacity: 0.2;
+  z-index: 1;
+}
+.descSetting {
+  margin-bottom: 0px !important;
+  font-weight: 900;
+}
