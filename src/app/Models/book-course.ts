@@ -19,4 +19,5 @@ export class BookCourse {
   guestRegistrationId?: any;
   courseName?: any;
   email?: any;
+  TopicName:any;
 }

@@ -110,7 +110,7 @@
                     <h5 class="mb-30 sub_heading">Please review you order .In case of any doubt please call on our
                         number <a>+918884615431</a> or Chat with us</h5>
                 </div>
-                <div class="cardRegister">
+                <div class="cardRegister" *ngIf="isUserLoggedIn">
                     <h3 class="mb-30 title_color">2. Order Details and Select Batch</h3>
                     <hr>
 
@@ -183,8 +183,12 @@
                     <hr>
                 </div>
                 <div style="text-align: center;">
-                    <a href="#" (click)="BookCourse($event)" class="genric-btn primary circle arrow">Proceed to
-                        Payment<span class="lnr lnr-arrow-right"></span></a>
+                    <button class="btn btn-primary" (click)="BookCourse($event)" [disabled]="!isUserLoggedIn">
+                        Proceed to
+                        Payment<span class="lnr lnr-arrow-right"></span>
+                    </button>
+                    <!-- <a href="#" (click)="BookCourse($event)" class="genric-btn primary circle arrow" [disabled]="!isUserLoggedIn">Proceed to
+                        Payment<span class="lnr lnr-arrow-right"></span></a> -->
                     <app-razorpayments (transactionStatus)="transactionUpdate($event)"></app-razorpayments>
                     <!-- <button class="btn btn-primary" >Proceed to Payment</button> -->
                 </div>

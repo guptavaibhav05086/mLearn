@@ -21,10 +21,11 @@ import { ToastrService } from "ngx-toastr";
   styleUrls: ["./registercours.component.css"]
 })
 export class RegistercoursComponent implements OnInit {
-  @ViewChild(RazorpaymentsComponent, null)
+  @ViewChild(RazorpaymentsComponent)
   private payComponent: RazorpaymentsComponent;
   courseBooking: BookCourse;
   orderPaymentData: any;
+  isUserLoggedIn = false;
   selectedCourse: string;
   selectedTopic: string = "";
   displayGuestForm: boolean = false;
@@ -52,14 +53,22 @@ export class RegistercoursComponent implements OnInit {
 
   ngOnInit() {
     debugger;
+    let Token = localStorage.getItem("email");
+    // if (Token == undefined || Token == "" || Token == null) {
+    //   this.isUserLoggedIn = false;
+    // } else {
+    //   this.isUserLoggedIn = true;
+    // }
     let courseid = this.route.snapshot.queryParams["course"];
     let topicId = this.route.snapshot.queryParams["topic"];
     this.getCourseTopicDetails(courseid, topicId);
     let token = this._login.getUserToken();
     if ((token.Token != null || token.Token != "") && token.type == "Student") {
       this.displayForm = false;
+      this.isUserLoggedIn = true;
     } else {
       this.displayForm = true;
+      this.isUserLoggedIn = false;
     }
   }
   loginForm = new FormGroup({
@@ -90,8 +99,10 @@ export class RegistercoursComponent implements OnInit {
         this.spinnerService.hide();
         this.courseBooking.isGuestRegistartion = true;
         this.courseBooking.email = loginRequest.Email;
+
         console.log(data);
         this.toastr.success("Registration Successful!", "Registration Done!");
+        this.isUserLoggedIn = true;
       },
       err => {
         this.spinnerService.hide();
@@ -140,7 +151,12 @@ export class RegistercoursComponent implements OnInit {
     this.courseBooking.totalPaidAmount = this.feesDetails.netTotal;
     this.courseBooking.mLearnTopic = topicId;
     this.courseBooking.courseId = courseid;
+    this.courseBooking.TopicName = this.selectedTopic;
     this.courseBooking.courseName = this.selectedCourse;
+    //this.courseBooking.preferedBatchTime = "Weekend Batches";
+    if (this.courseBooking.email == null) {
+      this.courseBooking.email = localStorage.getItem("email");
+    }
     if (topicId == 0) {
       this.courseBooking.ismLearn = false;
     } else {
@@ -159,6 +175,7 @@ export class RegistercoursComponent implements OnInit {
     this.courseBooking.transactionId = this.orderPaymentData[0];
     this._booking.CreateBooking(this.courseBooking).subscribe(data => {
       this.payComponent.orderId = this.orderPaymentData[1];
+      this.payComponent.bookingDetails = this.courseBooking;
       this.payComponent.createRzpayOrder(this.courseBooking.totalPaidAmount);
     });
   }
@@ -169,9 +186,11 @@ export class RegistercoursComponent implements OnInit {
     if (event.status == "Successful") {
       result = `Your booking status is  ${event.status}.Email with all boooking details is Sent t your Mail Id.`;
       this.toastr.success(result);
-      let timer = setInterval(() => {
-        this._helper.navigateToPath("/paymentmessage");
-      }, 10000);
+      this._helper.navigateToPath("/paymentmessage");
+      // let timer = setInterval(() => {
+      //   clearInterval(timer);
+      //   this._helper.navigateToPath("/paymentmessage");
+      // }, 10000);
     } else {
       result = `Your booking status is  ${event.status}.In case amount is deducted will be refunded to you in 3-5 business days`;
       this.toastr.error(result);
